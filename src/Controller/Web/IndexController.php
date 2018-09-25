@@ -10,9 +10,9 @@ class IndexController extends AbstractController
     {
         $this->render("index.phtml", [
             'products' => [
-                ['name' => 'rosso'],
-                ['name' => 'verde'],
-                ['name' => 'giallo']
+                ['name' => 'rosso<>'],
+                ['name' => 'verde@!'],
+                ['name' => 'giallo:/\\']
             ]
         ]);
     }
