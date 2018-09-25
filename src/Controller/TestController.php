@@ -2,7 +2,7 @@
 
 namespace Defconshop\Controller;
 
-class Test
+class TestController
 {
     public function hello()
     {

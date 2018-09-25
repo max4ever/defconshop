@@ -1,0 +1,15 @@
+<?php
+
+if (!empty($params['products'])){
+    ?>
+    <ul>
+    <?php
+    foreach($params['products'] as $product):
+    ?>
+        <li><?=$product['name']?></li>
+    <?php
+    endforeach;
+    ?>
+    </ul>
+<?php
+}
