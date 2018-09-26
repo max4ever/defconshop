@@ -1,0 +1,17 @@
+<?php
+if (!empty($params['errors'])) {
+    ?>
+    <ul class="form_errors">
+        <?php
+        foreach ($params['errors'] as $error) {
+            if (is_array($error)) {
+                $error = implode(",", $error);
+            }
+            ?>
+            <li><?=$error?></li>
+            <?php
+        }
+        ?>
+    </ul>
+    <?php
+}

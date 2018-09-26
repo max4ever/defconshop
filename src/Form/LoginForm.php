@@ -4,15 +4,13 @@ namespace Defconshop\Form;
 
 use Defconshop\Form\Validator\EmailFieldValidator;
 
-class LoginForm
+class LoginForm extends AbstractForm
 {
     private $emailValidator;
-    private $errors;
 
     public function __construct(EmailFieldValidator $emailFieldValidator)
     {
         $this->emailValidator = $emailFieldValidator;
-        $this->errors = [];
     }
 
     public function validate(array $data)
@@ -33,11 +31,6 @@ class LoginForm
 
         $this->errors = $errors;
         return empty($errors);
-    }
-
-    public function getErrors()
-    {
-        return $this->errors;
     }
 
 }

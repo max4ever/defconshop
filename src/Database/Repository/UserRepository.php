@@ -2,17 +2,8 @@
 
 namespace Defconshop\Database\Repository;
 
-class UserRepository
+class UserRepository extends AbstractRepository
 {
-    /**
-     * @var \PDO
-     */
-    private $pdo;
-
-    public function __construct(\PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
 
     public function saveNewUser(string $email, string $password, $name): bool
     {
@@ -23,7 +14,6 @@ class UserRepository
 
         $statement = $this->pdo->prepare('INSERT INTO `user` (email, password, name) VALUES (:email, :password, :name)');
 
-        $salt = uniqid(mt_rand(), true);
         return $statement->execute([
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),

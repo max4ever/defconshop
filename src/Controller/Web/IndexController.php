@@ -11,6 +11,7 @@ class IndexController extends AbstractController
 
     public function indexAction(ProductRepository $productRepository, CartService $cartService)
     {
+        //TODO add color filter
         $this->render("index.phtml", [
             'products' => $productRepository->getAllproducts(),
             'cart' => $cartService->getCart()

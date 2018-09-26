@@ -1,22 +1,5 @@
-<?php
-if (!empty($params['errors'])) {
-    ?>
-    <ul>
-        <?php
-        foreach ($params['errors'] as $error) {
-            if (is_array($error)) {
-                $error = implode(",", $error);
-            }
-            ?>
-            <li><?= $error ?></li>
-            <?php
-        }
-        ?>
-    </ul>
-    <?php
-}
-?>
-<form action="" method="POST" class="register">
+<?php require("_printFormErrors.phtml"); ?>
+<form action="/register" method="post" class="register">
     <label>Email: <input type="email" name="email" required/></label>
     <label>Name: <input type="text" name="name"/></label>
     <!--without required, to demonstrate server side data validation -->

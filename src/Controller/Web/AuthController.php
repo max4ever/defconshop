@@ -5,41 +5,36 @@ namespace Defconshop\Controller\Web;
 use Defconshop\Controller\AbstractController;
 use Defconshop\Database\Repository\UserRepository;
 use Defconshop\Form\LoginForm;
-use Defconshop\Service\SessionService;
+use Defconshop\Service\AuthService;
 
 class AuthController extends AbstractController
 {
+    /**
+     * @var AuthService
+     */
     private $sessionService;
 
-    public function __construct(SessionService $sessionService)
+    public function __construct(AuthService $sessionService)
     {
-        parent::__construct();
         $this->sessionService = $sessionService;
     }
 
     public function loginAction(LoginForm $loginForm, UserRepository $userRepository)
     {
-
-        //no point in doing login again, just redirect to home
         if ($this->sessionService->checkLoggedin()) {
-            //TODO add a flash message
-            header("Location: /");
+            header("Location: /");//TODO add a flash message
         }
 
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($loginForm->validate($_POST)) {
-
-                if ($userRepository->checkLogin($_POST['email'], $_POST['password'])) {
-                    $this->sessionService->loginUser();
-
-                    header("Location: /");
-                    return;
-                } else {
-                    $errors = ["User not found or password doesn't match"];
-                }
-            } else {
+            if (!$loginForm->validate($_POST)) {
                 $errors = $loginForm->getErrors();
+            } else if ($userRepository->checkLogin($_POST['email'], $_POST['password'])) {
+                $this->sessionService->loginUser($_POST['email']);
+                header("Location: /");
+                return;
+            } else {
+                $errors = ["User not found or password doesn't match"];
             }
         }
 

@@ -8,13 +8,15 @@ if (!empty($params['products'])) {
         foreach ($params['products'] as $product):
             ?>
             <li>
-                <?= $this->viewHelper::productImgTag($product['image_path'], $product['name']) ?>
-                <?= $product['name'] ?>
-                <?= $product['color'] ?>
-                <?= $this->viewHelper::formatCurrency($product['price_net']) ?>
+                <?=$this->viewHelper::productImgTag($product['image_path'], $product['name'])?>
+                <?=$product['name']?>
+                <?=$product['color']?>
+                <?=$this->viewHelper::formatCurrency($product['price_net'])?>
+
                 =>
-                <?= $this->viewHelper::formatCurrency($product['price_gross']) ?>
-                <a href="/product/add/<?= $product['id'] ?>">
+
+                <?=$this->viewHelper::formatCurrency($product['price_gross'])?>
+                <a href="/product/add/<?=$product['id']?>"><!-- TODO as ajax request-->
                     Add to cart
                 </a>
             </li>

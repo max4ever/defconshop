@@ -7,12 +7,7 @@ use Defconshop\Helper\ViewerHelper;
 abstract class AbstractController
 {
 
-    protected $viewHelper;
-
-    public function __construct()
-    {
-        $this->viewHelper = ViewerHelper::class;
-    }
+    protected $viewHelper = ViewerHelper::class;
 
     public function render(string $templateName, array $params = [], bool $autoEscapeHtml = true)
     {

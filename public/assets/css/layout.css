@@ -2,7 +2,12 @@ body {
     background-color: aliceblue;
 }
 
-form.register label, form.login label {
+form.register label, form.login label, form.checkout label {
     clear: both;
     display: block;
+}
+
+ul.form_errors {
+    color: red;
+    list-style: none;
 }

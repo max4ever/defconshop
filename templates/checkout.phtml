@@ -1,1 +1,21 @@
 <h1>Welcome to the checkout</h1>
+<?php
+include_once("shopping_cart.phtml");
+
+$sum_net = 0;
+$sum_gross = 0;
+foreach ($params['cart'] as $product) {
+    $sum_net += $product['price_net'];
+    $sum_gross += $product['price_gross'];
+}
+?>
+
+Total net: <b><?=$this->viewHelper::formatCurrency($sum_net)?></b><br/>
+Total gross: <b><?=$this->viewHelper::formatCurrency($sum_gross)?></b><br/>
+
+<?php require("_printFormErrors.phtml"); ?>
+<form action="/checkout" method="post" class="checkout">
+    <label><input type="radio" name="payment_method" value="method1" required>Method 1: credit card</label>
+    <label><input type="radio" name="payment_method" value="method2">Method 2: bank transfer</label>
+    <input type="submit" value="Pay!"/>
+</form>

@@ -2,17 +2,8 @@
 
 namespace Defconshop\Database\Repository;
 
-class ProductRepository
+class ProductRepository extends AbstractRepository
 {
-    /**
-     * @var \PDO
-     */
-    private $pdo;
-
-    public function __construct(\PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
 
     public function getAllproducts(): array
     {

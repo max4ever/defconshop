@@ -14,7 +14,7 @@ class ViewerHelper
         $str = htmlentities($str, ENT_QUOTES, "UTF-8");
     }
 
-    public static function formatCurrency(string $money): string
+    public static function formatCurrency($money): string
     {
         return money_format('%.2n', $money) . "€ \n";
     }

@@ -11,12 +11,13 @@ class CartService
     public function __construct(ProductRepository $productRepository)
     {
         $this->productRepository = $productRepository;
+        if (!isset($_SESSION)) {
+            session_start();
+        }
     }
 
     public function addProduct(int $product_id)
     {
-        session_start();
-
         //TODO validate product_id really exists in db
         if (empty($_SESSION['cart'])) {
             $_SESSION['cart'] = [
@@ -33,7 +34,6 @@ class CartService
 
     public function getCart()
     {
-        session_start();
         $result = [];
         if (!empty($_SESSION['cart']['products_id'])) {
             $result = $this->productRepository->getProducts(array_keys($_SESSION['cart']['products_id']));
@@ -44,5 +44,12 @@ class CartService
         }
 
         return $result;
+    }
+
+    public function deleteCart()
+    {
+        if (isset($_SESSION['cart'])) {
+            unset($_SESSION['cart']);
+        }
     }
 }
