@@ -4,7 +4,7 @@ namespace Defconshop\Form;
 
 use Defconshop\Form\Validator\EmailFieldValidator;
 
-class RegisterForm
+class LoginForm
 {
     private $emailValidator;
     private $errors;
@@ -19,7 +19,6 @@ class RegisterForm
     {
         $errors = [];
 
-
         if (!empty($data['email'])) {
             if (!$this->emailValidator->isValid($data['email'])) {
                 $errors['email'] = $this->emailValidator->getErrors();
@@ -28,24 +27,9 @@ class RegisterForm
             $errors['email'] = 'Email field is required';
         }
 
-        if (empty($data['name'])) {
-            $errors['name'] = 'Name field is required';
+        if (empty($data['password'])) {
+            $errors['password'] = 'Password field is required';
         }
-
-        if (empty($data['password1'])) {
-            $errors['password1'] = 'Password field is required';
-        }
-
-        if (empty($data['password2'])) {
-            $errors['password2'] = 'Confirm password field is required';
-        }
-
-        if (!empty($data['password1']) && !empty($data['password2'])) {
-            if ($data['password1'] != $data['password2']) {
-                $errors['password2'] = "Passwords don't match";
-            }
-        }
-
 
         $this->errors = $errors;
         return empty($errors);

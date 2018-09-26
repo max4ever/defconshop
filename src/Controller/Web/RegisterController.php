@@ -16,7 +16,7 @@ class RegisterController extends AbstractController
             if ($registerForm->validate($_POST)) {
 
                 //TODO check for existing email and give better errors
-                if ($userRepository->saveNewUser($_POST['email'], $_POST['password1'])) {
+                if ($userRepository->saveNewUser($_POST['email'], $_POST['password1'], $_POST['name'])) {
                     header("Location: /login");
                     return;
                 } else {

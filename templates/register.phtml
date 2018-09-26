@@ -17,8 +17,10 @@ if (!empty($params['errors'])) {
 }
 ?>
 <form action="" method="POST" class="register">
-    <label>Email: <input type="email" name="email"/></label>
-    <label>Password: <input type="password" name="password1"/></label>
-    <label>Repeat Password: <input type="password" name="password2"/></label>
+    <label>Email: <input type="email" name="email" required/></label>
+    <label>Name: <input type="text" name="name"/></label>
+    <!--without required, to demonstrate server side data validation -->
+    <label>Password: <input type="password" name="password1" required/></label>
+    <label>Repeat Password: <input type="password" name="password2" required/></label>
     <input type="submit" value="Register"/>
 </form>

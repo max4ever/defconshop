@@ -24,4 +24,11 @@ class CartController extends AbstractController
 
         header("Location: /");
     }
+
+    public function checkoutAction()
+    {
+        $this->render('checkout.phtml', [
+            'cart' => $this->cartService->getCart()
+        ]);
+    }
 }

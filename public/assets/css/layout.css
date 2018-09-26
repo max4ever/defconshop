@@ -2,7 +2,7 @@ body {
     background-color: aliceblue;
 }
 
-form.register label {
+form.register label, form.login label {
     clear: both;
     display: block;
 }
