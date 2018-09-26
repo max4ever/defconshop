@@ -1,5 +1,6 @@
 # defconshop
 
+Requirments: **PHP 7.2**
  * Add 20 random products
 ```bash
 defconshop/mysql_scripts$ php add20Products.php
