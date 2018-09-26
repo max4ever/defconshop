@@ -6,7 +6,16 @@ if (!empty($params['products'])){
     <?php
     foreach($params['products'] as $product):
     ?>
-        <li><?=$product['name']?></li>
+        <li><a href="/product/<?=$product['id']?>">
+                <?=$this->viewHelper::productImgTag($product['image_path'], $product['name'])?>
+                <?=$product['name']?>
+                <?=$product['color']?>
+                <br />
+                <?=$this->viewHelper::formatCurrency($product['price_net'])?>
+                 =>
+                <?=$this->viewHelper::formatCurrency($product['price_gross'])?>
+            </a>
+        </li>
     <?php
     endforeach;
     ?>
