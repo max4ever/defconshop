@@ -6,25 +6,30 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|css|ico)$/', $_SERVER["REQUEST_URI"])) {
 }
 
 $requestUrl = $_SERVER['REQUEST_URI'];
+
+use Defconshop\Controller\Web\CartController;
 use Defconshop\Controller\Web\IndexController;
+use Defconshop\Database\DatabaseConnection;
+use Defconshop\Database\Repository\ProductRepository;
+use Defconshop\Service\CartService;
+
+
+//match /product/add/123
+if (preg_match("^/product/add/(?<product_id>[\d]+)^", $requestUrl, $matches) == 1) {
+    $productRepository = new ProductRepository(DatabaseConnection::getInstance());
+    $controller = new CartController(new CartService($productRepository));
+    $controller->addAction($matches['product_id']);
+    return;
+}
 
 switch ($requestUrl) {
     case '/' :
         $controller = new IndexController();
-        $controller->indexAction();
+        $productRepository = new ProductRepository(DatabaseConnection::getInstance());
+        $cartService = new CartService($productRepository);
+        $controller->indexAction($productRepository, $cartService);
         break;
-    default:
-        //maybe it's static content
-        $staticFile = realpath(Config::$BASE_PATH . "public" . DIRECTORY_SEPARATOR . $requestUrl);
-        var_dump($staticFile);
-        if (file_exists($staticFile)){
-            if ("png" == pathinfo($staticFile, PATHINFO_EXTENSION)){
 
-                die('yahoo');
-            }
-            else{
-                die('boo');
-            }
-        }
+    default:
         die('Router: 404 page not found, url not mapped: ' . $requestUrl);
 }

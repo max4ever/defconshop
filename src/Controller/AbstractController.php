@@ -8,24 +8,25 @@ abstract class AbstractController
 {
 
     protected $viewHelper;
+
     public function __construct()
     {
         $this->viewHelper = ViewerHelper::class;
     }
 
-    public function render(string $templateName, array $params = [], bool $autoEscapeHtml = true){
+    public function render(string $templateName, array $params = [], bool $autoEscapeHtml = true)
+    {
         $fileName = \Config::$BASE_PATH . "templates" . DIRECTORY_SEPARATOR . "layout.phtml";
 
-        if ($autoEscapeHtml){
+        if ($autoEscapeHtml) {
             array_walk_recursive($params, array(ViewerHelper::class, "escapeHtml"));
         }
 
-        if (file_exists($fileName)){
+        if (file_exists($fileName)) {
             $includeFile = \Config::$BASE_PATH . "templates" . DIRECTORY_SEPARATOR . $templateName;//for layout.phtml to include
             require_once($fileName);
-        }
-        else{
-            die('Could not load template ' . $templateName . ' tried to look for it in '. $fileName);
+        } else {
+            die('Could not load template ' . $templateName . ' tried to look for it in ' . $fileName);
         }
     }
 

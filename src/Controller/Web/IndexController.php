@@ -2,19 +2,18 @@
 
 namespace Defconshop\Controller\Web;
 
-use \Defconshop\Controller\AbstractController;
-use Defconshop\Database\DatabaseConnection;
+use Defconshop\Controller\AbstractController;
 use Defconshop\Database\Repository\ProductRepository;
+use Defconshop\Service\CartService;
 
 class IndexController extends AbstractController
 {
-    public function indexAction()
-    {
-        $productRepository = new ProductRepository(DatabaseConnection::getInstance());
-        $products = $productRepository->getAllproducts();
 
+    public function indexAction(ProductRepository $productRepository, CartService $cartService)
+    {
         $this->render("index.phtml", [
-            'products' => $products
+            'products' => $productRepository->getAllproducts(),
+            'cart' => $cartService->getCart()
         ]);
     }
 }

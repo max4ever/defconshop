@@ -12,16 +12,18 @@ class InsertProductsFixture
      * @var \PDO
      */
     private $pdo;
+
     public function __construct(\PDO $pdo)
     {
         $this->pdo = $pdo;
     }
 
-    public function insert20Products(){
-        for($i = 1; $i <= 20; $i++){
+    public function insert20Products()
+    {
+        for ($i = 1; $i <= 20; $i++) {
 
             $statement = $this->pdo->prepare('INSERT INTO `product` (name, color, price_net, price_gross, image_path) VALUES '
-                .'(:name, :color, :price_net, :price_gross, :image_path)');
+                . '(:name, :color, :price_net, :price_gross, :image_path)');
 
             $statement->execute([
                 'name' => $this::NAMES[array_rand($this::NAMES, 1)],

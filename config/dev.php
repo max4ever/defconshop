@@ -15,6 +15,6 @@ class Config
     {
         //TODO maybe load configuration from an .ini config file
         setlocale(LC_MONETARY, 'it_IT');
-        self::$BASE_PATH = dirname(__FILE__) . DIRECTORY_SEPARATOR .".." . DIRECTORY_SEPARATOR;
+        self::$BASE_PATH = dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
     }
 }

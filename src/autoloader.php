@@ -18,8 +18,7 @@ class MyAutoloader
 
         if (file_exists($file_name)) {
             require_once($file_name);
-        }
-        else{
+        } else {
             die("Cannot autoload $className, tried looking for it in $file_name");//TODO $file_name not so security wise
         }
     }

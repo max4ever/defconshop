@@ -1,5 +1,6 @@
 <?php
-use \PHPUnit\Framework\TestCase;
+
+use PHPUnit\Framework\TestCase;
 
 class AutoloaderTest extends TestCase
 {
