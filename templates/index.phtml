@@ -3,6 +3,22 @@ include_once("shopping_cart.phtml");
 
 if (!empty($params['products'])) {
     ?>
+    <form action="/" method="post" id="colorForm">
+        <select id="colorFilter" name="color">
+            <option value="">Select a color</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+        </select>
+    </form>
+    <script type="text/javascript">
+        document.getElementById('colorFilter').onchange = function () {
+            if (this.value != "") {
+                document.getElementById('colorForm').submit();
+            }
+        };
+    </script>
     <ul>
         <?php
         foreach ($params['products'] as $product):

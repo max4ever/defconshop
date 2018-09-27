@@ -1,6 +1,16 @@
-# defconshop
+# Defconshop project
 
-Requirements: **PHP 7.2**
+Requirements: **PHP 7.2, MySQL/MariaDB**
+
+### Install
+1) Write the correct mysql data in ```config/dev.php```
+
+
+2) Import demo db from ```defconshop_db.zip```
+
+
+
+### Usage
  * Add 20 random products
 ```bash
 defconshop/mysql_scripts$ php add20Products.php

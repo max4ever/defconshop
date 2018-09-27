@@ -10,6 +10,14 @@ class ProductRepository extends AbstractRepository
         return $this->pdo->query("SELECT * from product")->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getAllProductsByColor(string $color): array
+    {
+        $statement = $this->pdo->prepare("SELECT * from product WHERE color = :color");
+        $statement->bindParam("color", $color);
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function getProducts(array $ids): array
     {
         $inQuery = implode(",", array_fill(0, count($ids), "?"));
