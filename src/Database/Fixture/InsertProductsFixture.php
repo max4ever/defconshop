@@ -22,8 +22,8 @@ class InsertProductsFixture extends AbstractRepository
             $price_gross = $price_net * 1.21;
 
             $statement->execute([
-                'name' => $this::NAMES[array_rand($this::NAMES, 1)],
-                'color' => $this::COLORS[array_rand($this::COLORS, 1)],
+                'name' => self::NAMES[array_rand(self::NAMES, 1)],
+                'color' => self::COLORS[array_rand(self::COLORS, 1)],
                 'price_net' => $price_net,
                 'price_gross' => $price_gross,
                 'image_path' => "product{$i}.png"

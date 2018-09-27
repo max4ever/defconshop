@@ -16,7 +16,7 @@ class ViewerHelper
 
     public static function formatCurrency($money): string
     {
-        return money_format('%.2n', $money) . "€ \n";
+        return money_format('%.2n', $money) . "€";
     }
 
     public static function productImgTag(string $filename, string $alt = "")
